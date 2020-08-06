@@ -1,4 +1,4 @@
-require "piece.rb"
+require_relative 'piece.rb'
 
 class Queen < Piece
   attr_accessor :icon, :moves
