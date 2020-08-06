@@ -6,6 +6,21 @@ class Rook < Piece
   def initialize(color, position)
     super(color, position)
     @icon = (@color == "white" ? "\u2656" : "\u265C").encode('utf-8')
-    @moves
+    @score = 5
+    @jump = false
+    @moves = []
+    set_moves
+  end
+
+  def set_moves
+    temp = []
+
+    7.times do |x|
+      temp << [x + 1, 0]
+      temp << [-(x + 1), 0]
+    end
+
+    temp.each { |x| @moves << x.permutation(2).to_a}
+    @moves = @moves.flatten(1)
   end
 end

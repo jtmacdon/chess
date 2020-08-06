@@ -3,5 +3,10 @@ class Piece
     def initialize(color, position)
         @color = color
         @position = position  
+        @attack_moves = nil
+    end
+
+    def can_jump?
+        return @jump
     end
 end

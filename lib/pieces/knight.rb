@@ -6,6 +6,13 @@ class Knight < Piece
   def initialize(color, position)
     super(color, position)
     @icon = (@color == "white" ? "\u2658" : "\u265E").encode('utf-8')
-    @moves
+    @score = 3
+    @jump = true
+    @moves = []
+    set_moves
+  end
+
+  def set_moves
+    @moves = [[1, 2], [2, 1], [2, -1], [1, -2], [-1, -2], [-2, -1], [-2, 1], [-1, 2]]
   end
 end
