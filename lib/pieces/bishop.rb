@@ -8,7 +8,6 @@ class Bishop < Piece
     @icon = (@color == "white" ? "\u2657" : "\u265D").encode('utf-8')
     @score = 3
     @jump = false
-    #creates array with all possible +/- permutations for each number
     @moves = []
     set_moves
   end
