@@ -11,18 +11,22 @@ class Game
   def initialize
     @gameboard = Board.new
     create_pieces
-    #true is player white, false is player black
-    @player = true
+    @player1 = "white"
+    @player2 = "black"
+    @current_player = @player2
+    @winner = false
 
   end
 
 
   def play_game
 
-    
-
-    @gameboard.print_board
-
+    while !@winner
+      @gameboard.print_board
+      get_move
+      @current_player = (@current_player == @player1 ? @player2 : @player1)
+    end
+      
   end
 
   def create_pieces
@@ -77,18 +81,56 @@ class Game
   end
 
   def get_move
+    puts "#{@current_player == @player1 ? "White's" : "Black's"} turn! Enter your move (hint: 3g:3e):"
+    str = gets.chomp
+    input = str.split('')
+    #check that input hass all the right elements
+    if input.length == 5 && input[2] == ":" && (0..7).include?(input[0].to_i) && 
+      (0..7).include?(input[3].to_i) && ("a".."h").include?(input[1].downcase) && 
+      ("a".."h").include?(input[4].downcase)
+
+      str = str.split(":")
+      pos = str[0]
+      pos[1] = (pos[1].downcase.ord - 97).to_s
+      target = str[1]
+      target[1] = (target[1].downcase.ord - 97).to_s
+      pos_array = pos.split('')
+      target_array = target.split('')
+
+
+      if @gameboard.not_occupied?(pos)
+        puts "There's no piece there to move, try again!"
+        get_move
+      elsif @gameboard.get_color(pos) != @current_player
+        puts "That's not your piece, try again!"
+        get_move
+      elsif @gameboard.get_color(pos) == @current_player
+        if !@gameboard.not_occupied?(target)
+          puts "There's already something there, try again!"
+          get_move
+        elsif @gameboard.not_occupied?(target)
+          move(pos, target)
+        end
+      else
+        puts "Something went wrong"
+      end
+      
+    else
+      puts "Invalid input, try again!"
+      puts "Remember that where your piece is comes first, then where you want to go\n"
+      get_move
+    end
 
   end
 
   def move(pos, target)
   
-    piece_index = to_index(pos)
-    target_index = to_index(target)
-
-    if gameboard.not_occupied?(target_index)
-      piece = @gameboard.board[piece_index]
+    #piece_index = to_index(pos)
+    #target_index = to_index(target)
+    if gameboard.not_occupied?(target)
+      piece = @gameboard.board[pos]
       gameboard.insert_piece(piece, target)
-      gameboard.remove_piece(piece_index)
+      gameboard.remove_piece(pos)
       return true
     else
       return false
@@ -100,10 +142,6 @@ class Game
     return arr[0].to_s + arr[1].to_s
   end
 
-  def valid?(pos, target)
-
-  end
-
 end
 
 
@@ -111,10 +149,12 @@ game = Game.new
 
 game.play_game
 
-game.move([0, 6], [0, 5])
+#game.move([0, 6], [0, 5])
 
-game.play_game
+#game.play_game
 
-game.move([1, 6], [0, 5])
+#game.move([1, 6], [0, 5])
 
-game.play_game
+#game.play_game
+
+
