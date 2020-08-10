@@ -15,6 +15,10 @@ class Board
     end
   end
 
+  def get_color(pos)
+    return @board[pos].color
+  end
+  
   def print_board
     #initialize unicode symbols
     b_sq = "\u25A0".encode("utf-8")
