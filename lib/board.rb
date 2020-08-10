@@ -3,6 +3,7 @@ class Board
   attr_accessor
   def initialize
     @board = {}
+    create_board
   end
 
   def create_board
