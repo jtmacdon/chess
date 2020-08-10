@@ -47,7 +47,8 @@ class Board
       puts y < 7 ? lines[1] : lines[2]
       str = ""
     end
-    puts "   0 1 2 3 4 5 6 7"
+    s = "\u2006".encode('utf-8')
+    puts "   #{s}0 #{s}1 #{s}2 #{s + s}3 #{s}4 #{s}5#{s} 6 #{s}7"
   end
 
   #helper function to for print_board to make top and bottom lines
