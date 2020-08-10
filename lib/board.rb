@@ -68,8 +68,9 @@ class Board
     @board[str] = piece if not_occupied?(pos)
   end
 
-  def remove_piece
-
+  def remove_piece(pos)
+    str = pos[0].to_s + pos[1].to_s
+    @board[str] = nil
   end
 
   def not_occupied?(pos)
