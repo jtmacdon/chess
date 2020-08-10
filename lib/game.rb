@@ -5,11 +5,14 @@ require_relative './pieces/knight.rb'
 require_relative './pieces/queen.rb'
 require_relative './pieces/rook.rb'
 require_relative 'board.rb'
+
 class Game
   attr_accessor :gameboard
   def initialize
     @gameboard = Board.new
     create_pieces
+    #true is player white, false is player black
+    @player = true
 
   end
 
@@ -18,7 +21,7 @@ class Game
 
     
 
-    gameboard.print_board
+    @gameboard.print_board
 
   end
 
@@ -73,9 +76,45 @@ class Game
 
   end
 
+  def get_move
+
+  end
+
+  def move(pos, target)
+  
+    piece_index = to_index(pos)
+    target_index = to_index(target)
+
+    if gameboard.not_occupied?(target_index)
+      piece = @gameboard.board[piece_index]
+      gameboard.insert_piece(piece, target)
+      gameboard.remove_piece(piece_index)
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def to_index(arr)
+    return arr[0].to_s + arr[1].to_s
+  end
+
+  def valid?(pos, target)
+
+  end
+
 end
 
 
 game = Game.new
+
+game.play_game
+
+game.move([0, 6], [0, 5])
+
+game.play_game
+
+game.move([1, 6], [0, 5])
 
 game.play_game
