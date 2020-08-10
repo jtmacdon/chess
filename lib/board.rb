@@ -1,6 +1,6 @@
 
 class Board
-  attr_accessor
+  attr_accessor :board
   def initialize
     @board = {}
     create_board
@@ -75,8 +75,7 @@ class Board
     @board[str] = nil
   end
 
-  def not_occupied?(pos)
-    str = pos[0].to_s + pos[1].to_s
+  def not_occupied?(str)
     return @board[str] == nil ?  true : false
   end
 
