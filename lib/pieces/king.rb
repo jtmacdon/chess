@@ -5,7 +5,7 @@ class King < Piece
   
   def initialize(color, position)
     super(color, position)
-    @icon = (@color == "white" ? "\u2654" : "\u265A").encode('utf-8')
+    @icon = (@color == "black" ? "\u2654" : "\u265A").encode('utf-8')
     @score = nil
     @jump = false
     @moves = []

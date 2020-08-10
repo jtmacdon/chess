@@ -5,7 +5,7 @@ class Queen < Piece
   
   def initialize(color, position)
     super(color, position)
-    @icon = (@color == "white" ? "\u2655" : "\u265B").encode('utf-8')
+    @icon = (@color == "black" ? "\u2655" : "\u265B").encode('utf-8')
     @score = 5
     @jump = false
     @moves = []

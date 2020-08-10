@@ -5,7 +5,7 @@ class Pawn < Piece
   
   def initialize(color, position)
     super(color, position)
-    @icon = (@color == "white" ? "\u2659" : "\u265F").encode('utf-8')
+    @icon = (@color == "black" ? "\u2659" : "\u265F").encode('utf-8')
     @score = 1
     @jump = false
     @moves = []

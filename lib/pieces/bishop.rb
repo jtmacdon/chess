@@ -5,7 +5,7 @@ class Bishop < Piece
   
   def initialize(color, position)
     super(color, position)
-    @icon = (@color == "white" ? "\u2657" : "\u265D").encode('utf-8')
+    @icon = (@color == "black" ? "\u2657" : "\u265D").encode('utf-8')
     @score = 3
     @jump = false
     @moves = []
